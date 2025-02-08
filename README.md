@@ -32,12 +32,13 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 - `data_penjualan.php`: Displays the transaction history.
 - `process.php`: Handles the checkout process.
 - `warung.php`: Main page displaying the product list and checkout functionality.
+- `mysql database/warung.sql`: SQL file to set up the database schema and initial data.
 
 ## Setup
 
 1. Clone the repository to your local machine.
-2. Set up a local server (e.g., XAMPP) and configure the database connection in `service/database.php`.
-3. Import the provided SQL file to set up the database schema and initial data.
+2. Set up a local server using XAMPP and configure the database connection in `service/database.php`.
+3. Import the provided SQL file (`mysql database/warung.sql`) to set up the database schema and initial data.
 4. Open the `warung.php` file in your browser to start using the application.
 
 ## Usage
