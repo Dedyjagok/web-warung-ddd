@@ -48,7 +48,3 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 3. Add products to the list by clicking the "Add to List" button.
 4. View the total price and proceed to checkout.
 5. Check the transaction history on the `data_penjualan.php` page.
-
-## License
-
-This project is licensed under the MIT License.
