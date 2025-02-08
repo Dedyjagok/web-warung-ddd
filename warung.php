@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+    exit();
+}
+
 include 'service/database.php';
 
 // Fetch products and their stock
@@ -24,7 +31,12 @@ while ($row = $result->fetch_assoc()) {
 </head>
 <body>
 <div class="flex justify-between items-center p-4 bg-gray-800 text-white fixed-navbar">
-        <h1 class="text-2xl font-bold">Warung DDD</h1>
+        <div class="flex items-center space-x-4">
+            <h1 class="text-2xl font-bold">Warung DDD</h1>
+            <form action="logout.php" method="POST">
+                <button type="submit" class="bg-red-500 text-white p-2 rounded">Logout</button>
+            </form>
+        </div>
         <a href="data_penjualan.php" class="bg-blue-500 text-white p-2 rounded">Transaction History</a>
         <div class="flex space-x-4">
             <select class="p-2 rounded bg-gray-700 text-white">
