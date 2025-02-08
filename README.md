@@ -10,6 +10,8 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 - **Total Price Calculation**: Automatically calculates the total price of selected products.
 - **Checkout**: Processes the checkout and updates the stock levels.
 - **Transaction History**: Displays a history of all transactions with product details and dates.
+- **Login**: Secure login feature to restrict access to authorized users only.
+- **Logout**: Allows users to securely log out of the application.
 
 ## Technologies Used
 
@@ -32,14 +34,19 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 - `data_penjualan.php`: Displays the transaction history.
 - `process.php`: Handles the checkout process.
 - `warung.php`: Main page displaying the product list and checkout functionality.
-- `mysql database/warung.sql`: SQL file to set up the database schema and initial data.
+- `mysql-database/warung.sql`: SQL file to set up the database schema and initial data.
+- `index.php`: Login page for users.
+- `login.php`: Handles the login process.
+- `logout.php`: Handles the logout process.
 
 ## Setup
 
 1. Clone the repository to your local machine.
 2. Set up a local server using XAMPP and configure the database connection in `service/database.php`.
-3. Import the provided SQL file (`mysql database/warung.sql`) to set up the database schema and initial data.
-4. Open the `warung.php` file in your browser to start using the application.
+3. Import the provided SQL file (`mysql-database/warung.sql`) to set up the database schema and initial data.
+4. Open the `index.php` file in your browser to access the login page.
+5. Log in using the credentials provided in the `admin` table of the database.
+6. After logging in, you will be redirected to the `warung.php` page to start using the application.
 
 ## Usage
 
@@ -48,6 +55,7 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 3. Add products to the list by clicking the "Add to List" button.
 4. View the total price and proceed to checkout.
 5. Check the transaction history on the `data_penjualan.php` page.
+6. Log out by clicking the "Logout" button beside the "Warung DDD" header.
 
 ## License
 
