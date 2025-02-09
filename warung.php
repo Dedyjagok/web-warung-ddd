@@ -52,16 +52,17 @@ while ($row = $result->fetch_assoc()) {
     <div class="main-container" style="margin-top: 80px;"> <!-- Adjust margin-top based on navbar height -->
         <div class="content">
             <?php foreach ($products as $product): ?>
-            <div class="card bg-white rounded shadow p-4" data-name="<?php echo $product['nama_produk']; ?>" data-price="<?php echo $product['harga']; ?>">
+            <div class="card bg-white rounded shadow p-4" data-name="<?php echo $product['nama_produk']; ?>" data-price="<?php echo $product['harga']; ?>" data-id="<?php echo $product['id_produk']; ?>" data-stock="<?php echo $product['stok']; ?>">
                 <h2 class="text-xl font-bold mb-2 text-black"><?php echo $product['nama_produk']; ?></h2>
                 <p class="text-gray-700 mb-4">Rp <?php echo number_format($product['harga'], 0, ',', '.'); ?></p>
-                <p class="text-gray-700 mb-4">Stock: <?php echo $product['stok']; ?></p>
+                <p class="text-gray-700 mb-4">Stock: <span class="product-stock"><?php echo $product['stok']; ?></span></p>
                 <form class="product-form" action="process.php" method="POST">
                     <input type="hidden" name="product_id" value="<?php echo $product['id_produk']; ?>">
                     <input type="hidden" name="product_name" value="<?php echo $product['nama_produk']; ?>">
                     <input type="hidden" name="product_price" value="<?php echo $product['harga']; ?>">
                     <button type="submit" class="bg-blue-500 text-white p-2 rounded add-to-list">Add to List</button>
                 </form>
+                <button class="bg-yellow-500 text-white p-2 rounded mt-2 update-stock">Update Stock</button>
             </div>
             <?php endforeach; ?>
         </div>
@@ -84,8 +85,26 @@ while ($row = $result->fetch_assoc()) {
             </div>
         </div>
     </div>
+
+    <!-- Modal for updating stock -->
+    <div id="stockModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-8 rounded shadow-md w-96">
+            <h2 class="text-2xl font-bold mb-4">Update Stock</h2>
+            <form id="updateStockForm" action="update_stock.php" method="POST">
+                <input type="hidden" name="product_id" id="modalProductId">
+                <div class="mb-4">
+                    <label for="modalProductStock" class="block text-gray-700">Stock</label>
+                    <input type="number" id="modalProductStock" name="stock" class="w-full p-2 border border-gray-300 rounded mt-1" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Update</button>
+                <button type="button" id="closeModal" class="w-full bg-red-500 text-white p-2 rounded mt-2">Cancel</button>
+            </form>
+        </div>
+    </div>
+
     <script src="js/add-to-list.js"></script>
     <script src="js/checkout.js"></script>
     <script src="js/search.js"></script>
+    <script src="js/stock-update.js"></script>
 </body>
 </html>
