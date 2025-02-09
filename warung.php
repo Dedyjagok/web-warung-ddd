@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])) {
 include 'service/database.php';
 
 // Fetch products and their stock
-$result = $db->query("SELECT id_produk, nama_produk, harga, stok FROM produk");
+$result = $db->query("SELECT id_produk, nama_produk, harga, stok, kategori FROM produk");
 
 $products = [];
 while ($row = $result->fetch_assoc()) {
@@ -39,20 +39,22 @@ while ($row = $result->fetch_assoc()) {
         </div>
         <a href="data_penjualan.php" class="bg-blue-500 text-white p-2 rounded">Transaction History</a>
         <div class="flex space-x-4">
-            <select class="p-2 rounded bg-gray-700 text-white">
+            <select id="categorySelect" class="p-2 rounded bg-gray-700 text-white">
                 <option selected value="all">All</option>
-                <option value="category1">Category 1</option>
-                <option value="category2">Category 2</option>
-                <option value="category3">Category 3</option>
+                <option value="makanan">Makanan</option>
+                <option value="minuman">Minuman</option>
+                <option value="produk perawatan dan kebersihan">Peralatan Mandi</option>
+                <option value="obat-obatan">Perawatan</option>
+                <option value="bahan dapur">Bahan Dapur</option>
             </select>
-            <input id="searchInput" type="text" placeholder="Search..." class="p-2 rounded bg-gray-700 text-white" oninput="filterBags()">
+            <input id="searchInput" type="text" placeholder="Search..." class="p-2 rounded bg-gray-700 text-white" oninput="filterProducts()">
         </div>
     </div>
     
     <div class="main-container" style="margin-top: 80px;"> <!-- Adjust margin-top based on navbar height -->
-        <div class="content">
+        <div class="content" id="productContainer">
             <?php foreach ($products as $product): ?>
-            <div class="card bg-white rounded shadow p-4" data-name="<?php echo $product['nama_produk']; ?>" data-price="<?php echo $product['harga']; ?>" data-id="<?php echo $product['id_produk']; ?>" data-stock="<?php echo $product['stok']; ?>">
+            <div class="card bg-white rounded shadow p-4" data-name="<?php echo $product['nama_produk']; ?>" data-price="<?php echo $product['harga']; ?>" data-id="<?php echo $product['id_produk']; ?>" data-stock="<?php echo $product['stok']; ?>" data-category="<?php echo $product['kategori']; ?>">
                 <h2 class="text-xl font-bold mb-2 text-black"><?php echo $product['nama_produk']; ?></h2>
                 <p class="text-gray-700 mb-4">Rp <?php echo number_format($product['harga'], 0, ',', '.'); ?></p>
                 <p class="text-gray-700 mb-4">Stock: <span class="product-stock"><?php echo $product['stok']; ?></span></p>
@@ -106,13 +108,7 @@ while ($row = $result->fetch_assoc()) {
     <script src="js/checkout.js"></script>
     <script src="js/search.js"></script>
     <script src="js/stock-update.js"></script>
-    <script>
-        document.getElementById('reset-button').addEventListener('click', function() {
-            document.getElementById('product-list').innerHTML = '';
-            document.getElementById('total-price').textContent = 'Rp 0';
-            document.getElementById('products-input').value = '[]';
-            document.getElementById('total-price-input').value = '0';
-        });
-    </script>
+    <script src="js/reset-function.js"></script>
+    <script src="js/category-filter.js"></script>
 </body>
 </html>
