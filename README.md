@@ -12,6 +12,7 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 - **Transaction History**: Displays a history of all transactions with product details and dates.
 - **Login**: Secure login feature to restrict access to authorized users only.
 - **Logout**: Allows users to securely log out of the application.
+- **Stock Update**: Allows users to update the stock of products through a modal popup.
 
 ## Technologies Used
 
@@ -28,6 +29,7 @@ Warung DDD is a simple market cashier website designed to manage product sales a
   - `add-to-list.js`
   - `content.js`
   - `search.js`
+  - `stock-update.js`
 - `service/`: Contains PHP files for backend services.
   - `database.php`
   - `warung.php`
@@ -38,6 +40,7 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 - `index.php`: Login page for users.
 - `login.php`: Handles the login process.
 - `logout.php`: Handles the logout process.
+- `update_stock.php`: Handles the stock update process.
 
 ## Setup
 
@@ -55,7 +58,8 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 3. Add products to the list by clicking the "Add to List" button.
 4. View the total price and proceed to checkout.
 5. Check the transaction history on the `data_penjualan.php` page.
-6. Log out by clicking the "Logout" button beside the "Warung DDD" header.
+6. Update the stock of products by clicking the "Update Stock" button on the product cards.
+7. Log out by clicking the "Logout" button beside the "Warung DDD" header.
 
 ## License
 
