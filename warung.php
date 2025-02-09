@@ -106,5 +106,13 @@ while ($row = $result->fetch_assoc()) {
     <script src="js/checkout.js"></script>
     <script src="js/search.js"></script>
     <script src="js/stock-update.js"></script>
+    <script>
+        document.getElementById('reset-button').addEventListener('click', function() {
+            document.getElementById('product-list').innerHTML = '';
+            document.getElementById('total-price').textContent = 'Rp 0';
+            document.getElementById('products-input').value = '[]';
+            document.getElementById('total-price-input').value = '0';
+        });
+    </script>
 </body>
 </html>
