@@ -37,9 +37,6 @@ CREATE TABLE `admin` (
 -- Dumping data untuk tabel `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `username`, `password`) VALUES
-(1, 'admin', 'admin1234');
-
 -- --------------------------------------------------------
 
 --
@@ -71,12 +68,6 @@ CREATE TABLE `penjualan` (
 -- Dumping data untuk tabel `penjualan`
 --
 
-INSERT INTO `penjualan` (`id_penjualan`, `id_produk`, `tanggal`, `total_harga`) VALUES
-(1, 0, '2025-02-09 09:43:51', 9000.00),
-(2, 13, '2025-02-09 09:46:13', 4000.00),
-(3, 12, '2025-02-09 09:46:13', 22000.00),
-(4, 12, '2025-02-09 09:46:13', 22000.00),
-(5, 48, '2025-02-09 09:51:13', 40000.00);
 
 -- --------------------------------------------------------
 
