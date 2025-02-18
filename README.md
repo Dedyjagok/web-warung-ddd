@@ -58,11 +58,18 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 2. Use the search bar to filter products by name.
 3. Use the category filter to filter products by category.
 4. Add products to the list by clicking the "Add to List" button.
+<<<<<<< HEAD
 5. Specify the quantity in the modal that appears and add the product to the list.
 6. View the total price and proceed to checkout.
 7. Check the transaction history on the `data_penjualan.php` page.
 8. Update the stock of products by clicking the "Update Stock" button on the product cards.
 9. Log out by clicking the "Logout" button beside the "Warung DDD" header.
+=======
+5. View the total price and proceed to checkout.
+6. Check the transaction history on the `data_penjualan.php` page.
+7. Update the stock of products by clicking the "Update Stock" button on the product cards.
+8. Log out by clicking the "Logout" button beside the "Warung DDD" header.
+>>>>>>> 50d6a76f12ca8247cec10a29967abcc25b5631b3
 
 ## License
 
