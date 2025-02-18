@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 include 'service/database.php';
 
 // Fetch transaction history
-$result = $db->query("SELECT p.id_penjualan, p.id_produk, pr.nama_produk, pr.harga, p.tanggal FROM penjualan p JOIN produk pr ON p.id_produk = pr.id_produk ORDER BY p.tanggal DESC");
+$result = $db->query("SELECT p.id_penjualan, p.id_produk, pr.nama_produk, pr.harga, p.total_pembelian, p.tanggal FROM penjualan p JOIN produk pr ON p.id_produk = pr.id_produk ORDER BY p.tanggal DESC");
 
 ?>
 
@@ -34,6 +34,8 @@ $result = $db->query("SELECT p.id_penjualan, p.id_produk, pr.nama_produk, pr.har
                     <th class="py-2 px-4 border-b">Product ID</th>
                     <th class="py-2 px-4 border-b">Product Name</th>
                     <th class="py-2 px-4 border-b">Product Price</th>
+                    <th class="py-2 px-4 border-b">Quantity</th>
+                    <th class="py-2 px-4 border-b">Total Price</th>
                     <th class="py-2 px-4 border-b">Date</th>
                 </tr>
             </thead>
@@ -43,7 +45,9 @@ $result = $db->query("SELECT p.id_penjualan, p.id_produk, pr.nama_produk, pr.har
                     <td class="py-2 px-4 border-b"><?php echo $row['id_penjualan']; ?></td>
                     <td class="py-2 px-4 border-b"><?php echo $row['id_produk']; ?></td>
                     <td class="py-2 px-4 border-b"><?php echo $row['nama_produk']; ?></td>
-                    <td class="py-2 px-4 border-b"><?php echo $row['harga']; ?></td>
+                    <td class="py-2 px-4 border-b">Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></td>
+                    <td class="py-2 px-4 border-b"><?php echo $row['total_pembelian']; ?></td>
+                    <td class="py-2 px-4 border-b">Rp <?php echo number_format($row['harga'] * $row['total_pembelian'], 0, ',', '.'); ?></td>
                     <td class="py-2 px-4 border-b"><?php echo $row['tanggal']; ?></td>
                 </tr>
                 <?php endwhile; ?>
