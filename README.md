@@ -6,6 +6,7 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 
 - **Product Listing**: Displays available products with their names, prices, and stock levels.
 - **Search Functionality**: Allows users to search for products by name.
+- **Category Filter**: Allows users to filter products by category.
 - **Add to List**: Users can add products to a list for checkout.
 - **Total Price Calculation**: Automatically calculates the total price of selected products.
 - **Checkout**: Processes the checkout and updates the stock levels.
@@ -27,20 +28,20 @@ Warung DDD is a simple market cashier website designed to manage product sales a
   - `sidebar.css`
 - `js/`: Contains JavaScript files for client-side functionality.
   - `add-to-list.js`
+  - `category-filter.js`
   - `content.js`
+  - `reset-function.js`
   - `search.js`
   - `stock-update.js`
 - `service/`: Contains PHP files for backend services.
   - `database.php`
-  - `warung.php`
 - `data_penjualan.php`: Displays the transaction history.
-- `process.php`: Handles the checkout process.
-- `warung.php`: Main page displaying the product list and checkout functionality.
-- `mysql-database/warung.sql`: SQL file to set up the database schema and initial data.
 - `index.php`: Login page for users.
 - `login.php`: Handles the login process.
 - `logout.php`: Handles the logout process.
+- `process.php`: Handles the checkout process.
 - `update_stock.php`: Handles the stock update process.
+- `warung.php`: Main page displaying the product list and checkout functionality.
 
 ## Setup
 
@@ -55,11 +56,13 @@ Warung DDD is a simple market cashier website designed to manage product sales a
 
 1. Navigate to the main page (`warung.php`) to view available products.
 2. Use the search bar to filter products by name.
-3. Add products to the list by clicking the "Add to List" button.
-4. View the total price and proceed to checkout.
-5. Check the transaction history on the `data_penjualan.php` page.
-6. Update the stock of products by clicking the "Update Stock" button on the product cards.
-7. Log out by clicking the "Logout" button beside the "Warung DDD" header.
+3. Use the category filter to filter products by category.
+4. Add products to the list by clicking the "Add to List" button.
+5. Specify the quantity in the modal that appears and add the product to the list.
+6. View the total price and proceed to checkout.
+7. Check the transaction history on the `data_penjualan.php` page.
+8. Update the stock of products by clicking the "Update Stock" button on the product cards.
+9. Log out by clicking the "Logout" button beside the "Warung DDD" header.
 
 ## License
 

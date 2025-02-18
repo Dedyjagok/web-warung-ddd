@@ -13,15 +13,16 @@ if (!empty($products)) {
         $productId = $product['id'];
         $productName = $product['name'];
         $productPrice = $product['price'];
+        $quantity = $product['quantity'];
 
-        // Decrease stock (assuming you have a stock column in your products table)
-        if (!$db->query("UPDATE produk SET stok = stok - 1 WHERE id_produk = '$productId'")) {
+        // Decrease stock by the specified quantity
+        if (!$db->query("UPDATE produk SET stok = stok - $quantity WHERE id_produk = '$productId'")) {
             $success = false;
             break;
         }
 
         // Add to history
-        if (!$db->query("INSERT INTO penjualan (id_produk, total_harga) VALUES ('$productId', '$productPrice')")) {
+        if (!$db->query("INSERT INTO penjualan (id_produk, total_harga, total_pembelian) VALUES ('$productId', '$productPrice', '$quantity')")) {
             $success = false;
             break;
         }

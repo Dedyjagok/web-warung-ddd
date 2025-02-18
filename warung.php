@@ -27,7 +27,6 @@ while ($row = $result->fetch_assoc()) {
     <link href="css/sidebar.css" rel="stylesheet"/>
     <link href="css/content.css" rel="stylesheet"/>
     <title>Warung DDD</title>
-    <script src="js/content.js"></script>
 </head>
 <body>
 <div class="flex justify-between items-center p-4 bg-gray-800 text-white fixed-navbar">
@@ -62,7 +61,7 @@ while ($row = $result->fetch_assoc()) {
                     <input type="hidden" name="product_id" value="<?php echo $product['id_produk']; ?>">
                     <input type="hidden" name="product_name" value="<?php echo $product['nama_produk']; ?>">
                     <input type="hidden" name="product_price" value="<?php echo $product['harga']; ?>">
-                    <button type="submit" class="bg-blue-500 text-white p-2 rounded add-to-list">Add to List</button>
+                    <button type="button" class="bg-blue-500 text-white p-2 rounded add-to-list">Add to List</button>
                 </form>
                 <button class="bg-yellow-500 text-white p-2 rounded mt-2 update-stock">Update Stock</button>
             </div>
@@ -104,11 +103,81 @@ while ($row = $result->fetch_assoc()) {
         </div>
     </div>
 
-    <script src="js/add-to-list.js"></script>
-    <script src="js/checkout.js"></script>
+    <!-- Modal for adding to list -->
+    <div id="addToListModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-8 rounded shadow-md w-96">
+            <h2 class="text-2xl font-bold mb-4">Add to List</h2>
+            <form id="addToListForm">
+                <input type="hidden" name="product_id" id="modalAddProductId">
+                <input type="hidden" name="product_name" id="modalAddProductName">
+                <input type="hidden" name="product_price" id="modalAddProductPrice">
+                <div class="mb-4">
+                    <label for="modalProductQuantity" class="block text-gray-700">Quantity</label>
+                    <input type="number" id="modalProductQuantity" name="quantity" class="w-full p-2 border border-gray-300 rounded mt-1" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Add</button>
+                <button type="button" id="closeAddToListModal" class="w-full bg-red-500 text-white p-2 rounded mt-2">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.add-to-list').forEach(button => {
+    button.addEventListener('click', function() {
+        let card = this.closest('.card');
+        let productId = card.getAttribute('data-id');
+        let productName = card.getAttribute('data-name');
+        let productPrice = card.getAttribute('data-price');
+
+        document.getElementById('modalAddProductId').value = productId;
+        document.getElementById('modalAddProductName').value = productName;
+        document.getElementById('modalAddProductPrice').value = productPrice;
+
+        document.getElementById('addToListModal').classList.remove('hidden');
+    });
+});
+
+document.getElementById('closeAddToListModal').addEventListener('click', function() {
+    document.getElementById('addToListModal').classList.add('hidden');
+});
+
+document.getElementById('addToListForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    let productId = document.getElementById('modalAddProductId').value;
+    let productName = document.getElementById('modalAddProductName').value;
+    let productPrice = parseInt(document.getElementById('modalAddProductPrice').value);
+    let quantity = parseInt(document.getElementById('modalProductQuantity').value);
+
+    let productList = document.getElementById('product-list');
+    let listItem = document.createElement('li');
+    listItem.textContent = `${productName} - Rp ${(productPrice * quantity).toLocaleString()} (x${quantity})`;
+    productList.appendChild(listItem);
+
+    // Update total price
+    let totalPriceElement = document.getElementById('total-price');
+    let currentTotal = parseInt(totalPriceElement.textContent.replace('Rp ', '').replace(/,/g, ''));
+    let newTotal = currentTotal + (productPrice * quantity);
+    totalPriceElement.textContent = `Rp ${newTotal.toLocaleString()}`;
+
+    // Add product to hidden input
+    let productsInput = document.getElementById('products-input');
+    let products = JSON.parse(productsInput.value || '[]');
+    products.push({ id: productId, name: productName, price: productPrice, quantity: quantity });
+    productsInput.value = JSON.stringify(products);
+
+    // Update total price hidden input
+    let totalPriceInput = document.getElementById('total-price-input');
+    totalPriceInput.value = newTotal;
+
+    document.getElementById('addToListModal').classList.add('hidden');
+});
+    </script>
+
     <script src="js/search.js"></script>
     <script src="js/stock-update.js"></script>
     <script src="js/reset-function.js"></script>
     <script src="js/category-filter.js"></script>
+
 </body>
 </html>
